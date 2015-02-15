@@ -1,0 +1,23 @@
+ZSH=$HOME/.dotfiles/oh-my-zsh
+DOTFILES_ROOT=$HOME/.dotfiles
+
+ZSH_THEME="robbyrussell"
+# DISABLE_AUTO_UPDATE="true"
+# export UPDATE_ZSH_DAYS=13
+# DISABLE_LS_COLORS="true"
+# DISABLE_AUTO_TITLE="true"
+# COMPLETION_WAITING_DOTS="true"
+
+plugins=(git github screen bower debian pip python django)
+
+source $ZSH/oh-my-zsh.sh
+
+alias la='ls -lAh'
+alias l='ls -lh'
+alias c='clear'
+alias e='subl -a'
+alias reload!='. ~/.zshrc'
+alias ipt='iptables'
+alias iptl="iptables -n -L -v --line-numbers"
+alias ipts="iptables-save >"
+alias iptr="iptables-restore <"
