@@ -8,7 +8,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 # COMPLETION_WAITING_DOTS="true"
 
-plugins=(git github screen bower debian pip python django)
+plugins=(git github screen bower ubuntu virtualenv supervisor sudo pip python fabric django node npm golang docker)
 
 source $ZSH/oh-my-zsh.sh
 
