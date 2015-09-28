@@ -8,7 +8,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 # COMPLETION_WAITING_DOTS="true"
 
-plugins=(git github screen bower ubuntu virtualenv supervisor sudo pip python fabric django node npm golang docker)
+plugins=(git github screen bower ubuntu supervisor sudo pip python fabric django node npm golang docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -21,3 +21,4 @@ alias ipt='iptables'
 alias iptl="iptables -n -L -v --line-numbers"
 alias ipts="iptables-save >"
 alias iptr="iptables-restore <"
+alias startwpa="sudo /sbin/wpa_supplicant -B -P /run/sendsigs.omit.d/wpasupplicant.pid -u -s -O /var/run/wpa_supplicant"
