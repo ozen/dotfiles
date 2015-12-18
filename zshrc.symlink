@@ -2,26 +2,35 @@ ZSH=$HOME/.dotfiles/oh-my-zsh
 DOTFILES_ROOT=$HOME/.dotfiles
 
 ZSH_THEME="robbyrussell"
-# DISABLE_AUTO_UPDATE="true"
-# export UPDATE_ZSH_DAYS=13
+DISABLE_UPDATE_PROMPT=true
 # DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
 # COMPLETION_WAITING_DOTS="true"
 
-plugins=(git github screen bower ubuntu supervisor sudo pip python fabric django node npm golang docker)
+plugins=(debian ubuntu systemd yum git github screen bower supervisor sudo pip python fabric django node npm golang docker colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
 alias la='ls -lAh'
 alias l='ls -lh'
 alias c='clear'
-alias e='subl -a'
 alias reload!='. ~/.zshrc'
+
 alias ipt='iptables'
 alias iptl="iptables -n -L -v --line-numbers"
 alias ipts="iptables-save >"
 alias iptr="iptables-restore <"
+
 alias startwpa="sudo /sbin/wpa_supplicant -B -P /run/sendsigs.omit.d/wpasupplicant.pid -u -s -O /var/run/wpa_supplicant"
 alias kuyruk="tail -f -n 1000"
 alias mmove="rsync -av"
 alias psy="ps axjf"
+
+source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh-autosuggestions/autosuggestions.zsh
+
+# Enable autosuggestions automatically.
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
