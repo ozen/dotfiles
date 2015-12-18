@@ -1,11 +1,9 @@
-ZSH=$HOME/.dotfiles/oh-my-zsh
 DOTFILES_ROOT=$HOME/.dotfiles
+ZSH=$DOTFILES_ROOT/oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 DISABLE_UPDATE_PROMPT=true
-# DISABLE_LS_COLORS="true"
-# DISABLE_AUTO_TITLE="true"
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 plugins=(debian ubuntu systemd yum git github screen bower supervisor sudo pip python fabric django node npm golang docker colored-man-pages)
 
@@ -26,11 +24,4 @@ alias kuyruk="tail -f -n 1000"
 alias mmove="rsync -av"
 alias psy="ps axjf"
 
-source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.dotfiles/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
