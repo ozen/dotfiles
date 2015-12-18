@@ -23,5 +23,10 @@ alias startwpa="sudo /sbin/wpa_supplicant -B -P /run/sendsigs.omit.d/wpasupplica
 alias kuyruk="tail -f -n 1000"
 alias mmove="rsync -av"
 alias psy="ps axjf"
+alias suz="noglob suz"
+
+suz() {
+    sudo -u $2 zsh
+}
 
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
