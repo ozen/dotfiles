@@ -24,6 +24,7 @@ alias kuyruk="tail -f -n 1000"
 alias mmove="rsync -av"
 alias psy="ps axjf"
 alias suz="noglob suz"
+alias wnvidia="watch -n 1 nvidia-smi"
 
 suz() {
     sudo -u $2 zsh
