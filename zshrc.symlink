@@ -24,7 +24,10 @@ alias startwpa="sudo /sbin/wpa_supplicant -B -P /run/sendsigs.omit.d/wpasupplica
 alias kuyruk="tail -f -n 1000"
 alias mmove="rsync -av"
 alias psy="ps axjf"
-alias suz="sudo -u $2 HOME=$(echo ~$2) ZDOTDIR=$ZDOTDIR zsh"
 alias wnvidia="watch -n 1 nvidia-smi"
+
+suz() {
+    sudo -u $2 HOME=$(echo ~$2) ZDOTDIR=$ZDOTDIR zsh
+}
 
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
