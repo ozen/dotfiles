@@ -26,6 +26,7 @@ alias mmove="rsync -av"
 alias psy="ps axjf"
 alias topy="top -c -d 1"
 alias wnvidia="watch -n 1 nvidia-smi"
+alias cudaquery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
 
 alias suz="noglob suz"
 function suz {
