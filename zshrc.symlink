@@ -33,4 +33,6 @@ function suz {
     sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR zsh
 }
 
+alias sv="sudo supervisorctl"
+
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
