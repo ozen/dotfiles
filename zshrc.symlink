@@ -27,6 +27,7 @@ alias psy="ps axjf"
 alias topy="top -c -d 1"
 alias wnvidia="watch -n 1 nvidia-smi"
 alias cudaquery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
+alias sok="ssh -D 1080 -f -C -q -N"
 
 alias suz="noglob suz"
 function suz {
