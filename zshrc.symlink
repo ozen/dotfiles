@@ -33,6 +33,14 @@ alias ytop="top -c -d 1"
 alias yfree="noglob yfree"
 alias yused="noglob yused"
 
+function ytopp {
+    ytopp_args="-c -d 1"
+    for pid in `pgrep -f $1`; do
+        ytopp_args="$ytopp_args -p $pid"
+    done
+    top $(echo $ytopp_args | xargs)
+}
+
 function suz {
     sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR zsh
 }
