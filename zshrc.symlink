@@ -21,7 +21,7 @@ alias ipts="iptables-save >"
 alias iptr="iptables-restore <"
 
 alias mmove="rsync -av"
-alias wnvidia="watch -n 1 nvidia-smi"
+alias wnvidia="watch -n 1 -d -t nvidia-smi"
 alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
 alias sok="ssh -D 1080 -f -C -q -N"
 alias suz="noglob suz"
