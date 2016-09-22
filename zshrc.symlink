@@ -33,6 +33,8 @@ alias ytop="top -c -d 1"
 alias yfree="noglob yfree"
 alias yused="noglob yused"
 
+alias avenv="source venv/bin/activate"
+
 function ytopp {
     ytopp_args="-c -d 1"
     for pid in `pgrep -f $1`; do
