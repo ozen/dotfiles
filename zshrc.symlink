@@ -33,6 +33,9 @@ alias ytop="top -c -d 1"
 alias yfree="noglob yfree"
 alias yused="noglob yused"
 
+alias set-proxy="noglob set-proxy"
+alias unset-proxy="noglob unset-proxy"
+
 alias activate="source venv/bin/activate"
 
 function ytopp {
@@ -53,6 +56,16 @@ function yused {
 
 function yfree {
     free | awk 'FNR == 3 {print $4/($3+$4)*100}'
+}
+
+function set-proxy {
+    export ALL_PROXY=socks5://127.0.0.1:1080
+    export NO_PROXY="localhost,127.0.0.1"
+}
+
+function unset-proxy {
+    unset ALL_PROXY
+    unset NO_PROXY
 }
 
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
