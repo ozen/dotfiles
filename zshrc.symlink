@@ -23,7 +23,6 @@ alias iptr="iptables-restore <"
 alias mmove="rsync -av"
 alias wnvidia="watch -n 1 -d -t nvidia-smi"
 alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
-alias sok="ssh -D 1080 -L 8035:localhost:8035 -f -C -q -N"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 
@@ -33,9 +32,6 @@ alias ytop="top -c -d 1"
 alias yfree="noglob yfree"
 alias yused="noglob yused"
 
-alias set-proxy="noglob set-proxy"
-alias unset-proxy="noglob unset-proxy"
-
 alias activate="source venv/bin/activate"
 
 function ytopp {
@@ -44,6 +40,16 @@ function ytopp {
         ytopp_args="$ytopp_args -p $pid"
     done
     top $(echo $ytopp_args | xargs)
+}
+
+function sok {
+    ssh -L 8035:localhost:8035 -f -C -q -N $1
+    ssh -D 1080 -f -C -q -N $1
+}
+
+function killsok {
+    pkill -f "ssh -L 8035"
+    pkill -f "ssh -D 1080"
 }
 
 function suz {
