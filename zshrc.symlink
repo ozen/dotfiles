@@ -23,7 +23,7 @@ alias iptr="iptables-restore <"
 alias mmove="rsync -av"
 alias wnvidia="watch -n 1 -d -t nvidia-smi"
 alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
-alias sok="ssh -D 1080 -f -C -q -N"
+alias sok="ssh -D 1080 -L 8035:localhost:8035 -f -C -q -N"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 
@@ -59,13 +59,18 @@ function yfree {
 }
 
 function set-proxy {
-    export ALL_PROXY=socks5://127.0.0.1:1080
-    export NO_PROXY="localhost,127.0.0.1"
+    export all_proxy=socks5://127.0.0.1:1080
+    export http_proxy=http://127.0.0.1:8035
+    export https_proxy=$http_proxy
+    export ftp_proxy=$http_proxy
+    export dns_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+    export no_proxy="localhost,127.0.0.1"
+    export use_proxy=on
 }
 
 function unset-proxy {
-    unset ALL_PROXY
-    unset NO_PROXY
+    export use_proxy=off
 }
 
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
