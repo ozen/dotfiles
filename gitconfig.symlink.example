@@ -2,7 +2,7 @@
 	name = Yigit Ozen
 	email = AUTHOREMAIL
 [core]
-	editor = vim
+	editor = nano
 [merge]
 	tool = vimdiff
 [credential]
