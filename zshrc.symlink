@@ -6,7 +6,7 @@ ZSH_THEME="robbyrussell"
 DISABLE_UPDATE_PROMPT=true
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(debian ubuntu systemd dnf git github screen bower supervisor sudo pip python fabric django node npm golang docker colored-man-pages)
+plugins=(debian ubuntu systemd dnf git screen bower supervisor sudo pip python fabric django node npm golang colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -25,6 +25,22 @@ alias wnvidia="watch -n 1 -d -t nvidia-smi"
 alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
+
+alias ndr="noglob ndr"
+
+function ndr {
+    nvidia-docker run -it --rm \
+    --volume="/home/$USER:/home/$USER" \
+    --volume=/etc/group:/etc/group:ro \
+    --volume=/etc/passwd:/etc/passwd:ro \
+    --volume=/etc/shadow:/etc/shadow:ro \
+    --volume=/etc/sudoers.d:/etc/sudoers.d:ro \
+    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+    --user=$(id -u) \
+    --env="DISPLAY" \
+    --workdir="/home/$USER" \
+    $1 /bin/bash
+}
 
 alias ytail="tail -f -n 1000"
 alias yps="ps axjf"
@@ -53,7 +69,7 @@ function killsok {
 }
 
 function suz {
-    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR zsh
+    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH zsh
 }
 
 function yused {
