@@ -39,7 +39,7 @@ function ndr {
     --user=$(id -u) \
     --env="DISPLAY" \
     --workdir="/home/$USER" \
-    $1 /bin/bash
+    $@
 }
 
 alias ytail="tail -f -n 1000"
