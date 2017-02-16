@@ -34,6 +34,7 @@ function ndr {
     --volume=/etc/group:/etc/group:ro \
     --volume=/etc/passwd:/etc/passwd:ro \
     --volume=/etc/shadow:/etc/shadow:ro \
+    --volume=/etc/sudoers:/etc/sudoers:ro \
     --volume=/etc/sudoers.d:/etc/sudoers.d:ro \
     --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
     --user=$(id -u) \
@@ -69,7 +70,7 @@ function killsok {
 }
 
 function suz {
-    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH zsh
+    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH zsh
 }
 
 function yused {
