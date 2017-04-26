@@ -96,4 +96,8 @@ function unset-proxy {
     export use_proxy=off
 }
 
+function privtopub {
+    ssh-keygen -y -f $1 > $1.pub
+}
+
 source $DOTFILES_ROOT/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
