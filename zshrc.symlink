@@ -32,6 +32,23 @@ alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQu
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 
+alias ndr="noglob ndr"
+
+function ndr {
+    nvidia-docker run -it --rm \
+    --volume="/home/$USER:/home/$USER" \
+    --volume=/etc/group:/etc/group:ro \
+    --volume=/etc/passwd:/etc/passwd:ro \
+    --volume=/etc/shadow:/etc/shadow:ro \
+    --volume=/etc/sudoers:/etc/sudoers:ro \
+    --volume=/etc/sudoers.d:/etc/sudoers.d:ro \
+    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+    --user=$(id -u) \
+    --env="DISPLAY" \
+    --workdir="/home/$USER" \
+    $@
+}
+
 alias ytail="tail -f -n 1000"
 alias yps="ps axjf"
 alias ytop="top -c -d 1"
@@ -59,7 +76,7 @@ function killsok {
 }
 
 function suz {
-    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR zsh
+    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH zsh
 }
 
 function yused {
@@ -83,6 +100,10 @@ function set-proxy {
 
 function unset-proxy {
     export use_proxy=off
+}
+
+function priv2pub {
+    ssh-keygen -y -f $1 > $1.pub
 }
 
 
