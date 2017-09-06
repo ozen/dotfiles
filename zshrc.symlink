@@ -66,12 +66,10 @@ function ytopp {
 }
 
 function sok {
-    ssh -L 8035:localhost:8035 -f -C -q -N $1
-    ssh -D 1080 -f -C -q -N $1
+    ssh -D 1080 -L 8035:localhost:8035 -R 8036:localhost:8036 -A -f -C -q -N $1
 }
 
 function killsok {
-    pkill -f "ssh -L 8035"
     pkill -f "ssh -D 1080"
 }
 
