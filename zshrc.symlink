@@ -74,11 +74,11 @@ function sok {
 }
 
 function sshl {
-    ssh -L $1:localhost:$1 -A -f -C -q -N $2
+    ssh -L $1':localhost:'$1 -A -f -C -q -N $2
 }
 
 function sshr {
-    ssh -R $1:localhost:$1 -A -f -C -q -N $2
+    ssh -R $1':localhost:'$1 -A -f -C -q -N $2
 }
 
 function killsok {
