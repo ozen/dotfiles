@@ -32,6 +32,8 @@ alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQu
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 
+alias matlabc="matlab -nojvm -nodisplay -nosplash"
+
 alias ndr="noglob ndr"
 
 function ndr {
