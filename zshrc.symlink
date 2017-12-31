@@ -2,7 +2,7 @@ export ZDOTDIR=${ZDOTDIR:-$HOME}
 DOTFILES_ROOT=$ZDOTDIR/.dotfiles
 ZSH=$DOTFILES_ROOT/oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="af-magic"
 DISABLE_UPDATE_PROMPT=true
 COMPLETION_WAITING_DOTS="true"
 
