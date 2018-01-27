@@ -59,7 +59,10 @@ alias ytop="top -c -d 1"
 alias yfree="noglob yfree"
 alias yused="noglob yused"
 
-alias activate="source venv/bin/activate"
+function activate {
+    VENV=${1:-venv}
+    echo $VENV/bin/activate
+}
 
 function ytopp {
     ytopp_args="-c -d 1"
