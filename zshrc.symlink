@@ -39,7 +39,7 @@ alias matlabc="matlab -nojvm -nodisplay -nosplash"
 alias ndr="noglob ndr"
 
 function ndr {
-    nvidia-docker run -it --rm \
+    docker run --runtime=nvidia -it --rm \
     --volume="/home/$USER:/home/$USER" \
     --volume=/etc/group:/etc/group:ro \
     --volume=/etc/passwd:/etc/passwd:ro \
@@ -70,7 +70,7 @@ function ytopp {
 }
 
 function sok {
-    ssh -D 1080 -L 8035:localhost:8035 -R 8036:localhost:8036 -A -f -C -q -N $1
+    ssh -D 1080 -A -f -C -q -N $1
 }
 
 function sshl {
