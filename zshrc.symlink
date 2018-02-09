@@ -60,7 +60,7 @@ alias ytop="top -c -d 1"
 
 function activate {
     VENV=${1:-venv}
-    echo $VENV/bin/activate
+    source $VENV/bin/activate
 }
 
 function ytopp {
