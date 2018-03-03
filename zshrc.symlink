@@ -122,17 +122,19 @@ function cmc {
 }
 
 function randomize {
-    if [ -f "$1" ]; then
-        file_name=$(basename "$1")
-        dir_name=$(dirname "$1")
-        extension="${file_name##*.}"
-        file_name="${file_name%.*}"
-        if [ $file_name = $extension ]; then
-            extension=""
-        else
-            extension=.$extension
+    for inp in "$@"; do
+        if [ -f "$inp" ]; then
+            file_name=$(basename "$inp")
+            dir_name=$(dirname "$inp")
+            extension="${file_name##*.}"
+            file_name="${file_name%.*}"
+            if [ $file_name = $extension ]; then
+                extension=""
+            else
+                extension=.$extension
+            fi
+            new_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+            mv $inp $dir_name/$new_name$extension
         fi
-        new_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-        mv $1 $dir_name/$new_name$extension
-    fi
+    done
 }
