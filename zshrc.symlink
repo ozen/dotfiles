@@ -7,13 +7,13 @@ ZSH_THEME="af-magic"
 DISABLE_UPDATE_PROMPT=true
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(debian ubuntu fedora systemd dnf 
+plugins=(debian ubuntu fedora systemd dnf
 git github sublime
-screen tmux supervisor sudo 
-pip python virtualenv fabric django 
-node npm bower 
-golang docker docker-compose 
-colored-man-pages 
+screen tmux supervisor sudo
+pip python virtualenv fabric django
+node npm bower
+golang docker docker-compose
+colored-man-pages
 zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -23,21 +23,16 @@ alias la='ls -lAh'
 alias l='ls -lh'
 alias c='clear'
 alias reload!='. ~/.zshrc'
-
-alias ipt='iptables'
-alias iptl="iptables -n -L -v --line-numbers"
-alias ipts="iptables-save >"
-alias iptr="iptables-restore <"
-
 alias mmove="rsync -av"
 alias wnvidia="watch -n 1 -d -t nvidia-smi"
 alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
-
 alias matlabc="matlab -nojvm -nodisplay -nosplash"
-
 alias ndr="noglob ndr"
+alias ytail="tail -f -n 1000"
+alias yps="ps axjf"
+alias ytop="top -c -d 1"
 
 function ndr {
     docker run --runtime=nvidia -it --rm \
@@ -53,10 +48,6 @@ function ndr {
     --workdir="/home/$USER" \
     $@
 }
-
-alias ytail="tail -f -n 1000"
-alias yps="ps axjf"
-alias ytop="top -c -d 1"
 
 function activate {
     VENV=${1:-venv}
@@ -110,3 +101,38 @@ function priv2pub {
     ssh-keygen -y -f $1 > $1.pub
 }
 
+function xe {
+    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
+        uri="http://www.xe.com/currencyconverter/convert/?Amount=$1&From=$2&To=$3"
+        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $3 if /<span class=(.*?)uccResultAmount(.*?)>\s*(.*?)\s*<\/span>/si'`
+        echo $value
+    fi
+}
+
+function exch {
+    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
+        uri="https://finance.google.com/finance/converter?a=$1&from=$2&to=$3"
+        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $1 if /<div id=currency_converter_result>.*<span class=bld>(\d+\.\d+).*<\/span>/si'`
+        echo $value
+    fi
+}
+
+function cmc {
+    $DOTFILES_ROOT/cmc.py "$@"
+}
+
+function randomize {
+    if [ -f "$1" ]; then
+        file_name=$(basename "$1")
+        dir_name=$(dirname "$1")
+        extension="${file_name##*.}"
+        file_name="${file_name%.*}"
+        if [ $file_name = $extension ]; then
+            extension=""
+        else
+            extension=.$extension
+        fi
+        new_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+        mv $1 $dir_name/$new_name$extension
+    fi
+}
