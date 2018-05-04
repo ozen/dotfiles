@@ -7,12 +7,12 @@ ZSH_THEME="af-magic"
 DISABLE_UPDATE_PROMPT=true
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(debian ubuntu fedora systemd dnf
+plugins=(systemd dnf
 git github sublime
 screen tmux supervisor sudo
 pip python virtualenv fabric django
 node npm bower
-golang docker docker-compose
+docker docker-compose docker-machine
 colored-man-pages
 zsh-autosuggestions zsh-syntax-highlighting)
 
