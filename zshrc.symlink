@@ -33,6 +33,7 @@ alias ndr="noglob ndr"
 alias ytail="tail -f -n 1000"
 alias yps="ps axf -o pid,ppid,user,etime,bsdtime,args"
 alias ytop="top -c -d 1"
+alias youtube="noglob youtube-dl"
 
 function ndr {
     docker run --runtime=nvidia -it --rm \
