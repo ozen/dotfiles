@@ -1,3 +1,4 @@
+
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 DOTFILES_ROOT=$ZDOTDIR/.dotfiles
 ZSH=$DOTFILES_ROOT/oh-my-zsh
@@ -139,4 +140,28 @@ function randomize {
             mv $inp $dir_name/$new_name$extension
         fi
     done
+}
+
+function cheat {
+    curl cht.sh/$1
+}
+
+function path {
+    if [[ -d "$1" ]] ; then
+        if [[ -z "$PATH" ]] ; then
+            export PATH=$1
+        else
+            export PATH=$PATH:$1
+        fi
+    fi
+}
+
+function ld-path {
+    if [[ -d "$1" ]] ; then
+        if [[ -z "$LD_LIBRARY_PATH" ]] ; then
+            export LD_LIBRARY_PATH=$1
+        else
+            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$1
+        fi
+    fi
 }
