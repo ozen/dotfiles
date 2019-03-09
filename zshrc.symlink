@@ -36,6 +36,7 @@ alias yps="ps axf -o pid,ppid,user,etime,bsdtime,args"
 alias ytop="top -c -d 1"
 alias youtube="noglob youtube-dl"
 alias omni="noglob omniboard --mu `cat ~/.omniboard`"
+alias tb="tensorboard --logdir"
 
 function ndr {
     docker run --runtime=nvidia -it --rm \
