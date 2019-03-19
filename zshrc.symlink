@@ -166,3 +166,11 @@ function ld-path {
         fi
     fi
 }
+
+function retina {
+    if [[ -z "$1" ]] ; then
+        ssh -t retina.cs.bilkent.edu.tr
+    else
+        ssh -t retina.cs.bilkent.edu.tr "ssh -t retina$1 zsh"
+    fi
+}
