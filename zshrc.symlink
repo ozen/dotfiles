@@ -171,6 +171,10 @@ function retina {
     if [[ -z "$1" ]] ; then
         ssh -t retina.cs.bilkent.edu.tr
     else
-        ssh -t retina.cs.bilkent.edu.tr "ssh -t retina$1 zsh"
+        if [[ $HOSTNAME == "retina" ]] ; then
+            ssh -t retina$1 "zsh"
+        else
+            ssh -t retina.cs.bilkent.edu.tr "ssh -t retina$1 zsh"
+        fi 
     fi
 }
