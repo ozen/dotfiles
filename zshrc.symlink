@@ -169,12 +169,12 @@ function ld-path {
 
 function retina {
     if [[ -z "$1" ]] ; then
-        ssh -t retina.cs.bilkent.edu.tr
+        ssh retina.cs.bilkent.edu.tr
     else
         if [[ $HOSTNAME == "retina" ]] ; then
-            ssh -t retina$1 "zsh"
+            ssh retina$1
         else
-            ssh -t retina.cs.bilkent.edu.tr "ssh -t retina$1 zsh"
+            ssh -t retina.cs.bilkent.edu.tr "ssh retina$1"
         fi 
     fi
 }
