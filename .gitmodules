@@ -10,3 +10,6 @@
 	path = oh-my-zsh-custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	branch = master
+[submodule "vim.symlink/pack/plugins/start/vim-airline"]
+	path = vim.symlink/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
