@@ -174,7 +174,7 @@ function retina {
         if [[ $HOSTNAME == "retina" ]] ; then
             ssh retina$1
         else
-            ssh -t retina.cs.bilkent.edu.tr "ssh retina$1"
+            ssh -j retina.cs.bilkent.edu.tr retina$1
         fi 
     fi
 }
