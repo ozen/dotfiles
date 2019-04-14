@@ -178,3 +178,7 @@ function retina {
         fi 
     fi
 }
+
+function switch {
+    mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
+}
