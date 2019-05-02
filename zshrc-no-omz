@@ -1,0 +1,196 @@
+# fuzzy find history
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+# oh-my-zsh commons
+setopt auto_cd
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
+setopt multios
+setopt prompt_subst
+setopt long_list_jobs
+setopt interactivecomments
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt nobeep
+setopt histignorespace
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+# my aliases
+alias la='ls -lAh'
+alias l='ls -lh'
+alias c='clear'
+alias reload!='. ~/.zshrc'
+alias backup="rsync -avv --delete --info=name1"
+alias wnvidia="watch -n 1 -d -t nvidia-smi"
+alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
+alias suz="noglob suz"
+alias sv="sudo supervisorctl"
+alias matlabc="matlab -nojvm -nodisplay -nosplash"
+alias ndr="noglob ndr"
+alias ytail="tail -f -n 1000"
+alias yps="ps axf -o pid,ppid,user,etime,bsdtime,args"
+alias ytop="top -c -d 1"
+alias youtube="noglob youtube-dl"
+alias omni="noglob omniboard --mu \$(cat ~/.omniboard)"
+alias tb="tensorboard --logdir"
+
+function ndr {
+    docker run --runtime=nvidia -it --rm \
+    --volume="/home/$USER:/home/$USER" \
+    --volume=/etc/group:/etc/group:ro \
+    --volume=/etc/passwd:/etc/passwd:ro \
+    --volume=/etc/shadow:/etc/shadow:ro \
+    --volume=/etc/sudoers:/etc/sudoers:ro \
+    --volume=/etc/sudoers.d:/etc/sudoers.d:ro \
+    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+    --user=$(id -u) \
+    --env="DISPLAY" \
+    --workdir="/home/$USER" \
+    $@
+}
+
+function activate {
+    VENV=${1:-venv}
+    source $VENV/bin/activate
+}
+
+function ytopp {
+    ytopp_args="-c -d 1"
+    for pid in `pgrep -f $1`; do
+        ytopp_args="$ytopp_args -p $pid"
+    done
+    top $(echo $ytopp_args | xargs)
+}
+
+function sok {
+    ssh -D 1080 -A -f -C -q -N $1
+}
+
+function sshl {
+    ssh -L $1':localhost:'$1 -A -f -C -q -N $2
+}
+
+function sshr {
+    ssh -R $1':localhost:'$1 -A -f -C -q -N $2
+}
+
+function killsok {
+    pkill -f "ssh -D 1080"
+}
+
+function suz {
+    sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH zsh
+}
+
+function set-proxy {
+    export all_proxy=socks5://127.0.0.1:1080
+    export http_proxy=http://127.0.0.1:8035
+    export https_proxy=$http_proxy
+    export ftp_proxy=$http_proxy
+    export dns_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+    export no_proxy="localhost,127.0.0.1"
+    export use_proxy=on
+}
+
+function unset-proxy {
+    export use_proxy=off
+}
+
+function priv2pub {
+    ssh-keygen -y -f $1 > $1.pub
+}
+
+function xe {
+    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
+        uri="http://www.xe.com/currencyconverter/convert/?Amount=$1&From=$2&To=$3"
+        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $3 if /<span class=(.*?)uccResultAmount(.*?)>\s*(.*?)\s*<\/span>/si'`
+        echo $value
+    fi
+}
+
+function exch {
+    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
+        uri="https://finance.google.com/finance/converter?a=$1&from=$2&to=$3"
+        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $1 if /<div id=currency_converter_result>.*<span class=bld>(\d+\.\d+).*<\/span>/si'`
+        echo $value
+    fi
+}
+
+function cmc {
+    $DOTFILES_ROOT/cmc.py "$@"
+}
+
+function randomize {
+    for inp in "$@"; do
+        if [ -f "$inp" ]; then
+            file_name=$(basename "$inp")
+            dir_name=$(dirname "$inp")
+            extension="${file_name##*.}"
+            file_name="${file_name%.*}"
+            if [ $file_name = $extension ]; then
+                extension=""
+            else
+                extension=.$extension
+            fi
+            new_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+            mv $inp $dir_name/$new_name$extension
+        fi
+    done
+}
+
+function cheat {
+    curl cht.sh/$1
+}
+
+function path {
+    if [[ -d "$1" ]] ; then
+        if [[ -z "$PATH" ]] ; then
+            export PATH=$1
+        else
+            export PATH=$PATH:$1
+        fi
+    fi
+}
+
+function ld-path {
+    if [[ -d "$1" ]] ; then
+        if [[ -z "$LD_LIBRARY_PATH" ]] ; then
+            export LD_LIBRARY_PATH=$1
+        else
+            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$1
+        fi
+    fi
+}
+
+function retina {
+    if [[ -z "$1" ]] ; then
+        ssh retina.cs.bilkent.edu.tr
+    else
+        if [[ $HOSTNAME == "retina" ]] ; then
+            ssh retina$1
+        else
+            ssh -j retina.cs.bilkent.edu.tr retina$1
+        fi 
+    fi
+}
