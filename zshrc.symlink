@@ -70,16 +70,24 @@ function sok {
     ssh -D 1080 -A -f -C -q -N $1
 }
 
+function killsok {
+        pkill -f "ssh -D 1080"
+}
+
 function sshl {
-    ssh -L $1':localhost:'$1 -A -f -C -q -N $2
+    if [[ $1 =~ '^[0-9]+$' ]] ; then
+        ssh -L $1':localhost:'$1 -A -f -C -q -N $2
+    else
+        ssh -L $1 -A -f -C -q -N $2
+    fi
 }
 
 function sshr {
-    ssh -R $1':localhost:'$1 -A -f -C -q -N $2
-}
-
-function killsok {
-    pkill -f "ssh -D 1080"
+    if [[ $1 =~ '^[0-9]+$' ]] ; then
+        ssh -R $1':localhost:'$1 -A -f -C -q -N $2
+    else
+        ssh -R $1 -A -f -C -q -N $2
+    fi
 }
 
 function suz {
@@ -103,26 +111,6 @@ function unset-proxy {
 
 function priv2pub {
     ssh-keygen -y -f $1 > $1.pub
-}
-
-function xe {
-    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
-        uri="http://www.xe.com/currencyconverter/convert/?Amount=$1&From=$2&To=$3"
-        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $3 if /<span class=(.*?)uccResultAmount(.*?)>\s*(.*?)\s*<\/span>/si'`
-        echo $value
-    fi
-}
-
-function exch {
-    if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
-        uri="https://finance.google.com/finance/converter?a=$1&from=$2&to=$3"
-        value=`curl -s --connect-timeout 60 --max-time 60 $uri | perl -l -0777 -ne 'print $1 if /<div id=currency_converter_result>.*<span class=bld>(\d+\.\d+).*<\/span>/si'`
-        echo $value
-    fi
-}
-
-function cmc {
-    $DOTFILES_ROOT/cmc.py "$@"
 }
 
 function randomize {
