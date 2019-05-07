@@ -10,12 +10,7 @@ COMPLETION_WAITING_DOTS=true
 ZSH_DISABLE_COMPFIX=true
 DISABLE_AUTO_UPDATE=true
 
-plugins=(systemd dnf git 
-screen tmux supervisor sudo
-pip python virtualenv fabric django
-docker docker-compose docker-machine
-colored-man-pages
-zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git screen)
 
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES_ROOT/nginx.zsh
@@ -170,3 +165,8 @@ function retina {
 function switch {
     mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
 }
+
+# retina
+source /data/tools_x86_64/settings_bash.sh
+. /data/tools_x86_64/anaconda3/etc/profile.d/conda.sh
+unset PYTHONHOME
