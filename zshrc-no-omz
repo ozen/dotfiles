@@ -1,12 +1,30 @@
-# fuzzy find history
+# load zsh modules
+zmodload zsh/curses
+zmodload zsh/parameter
+zmodload zsh/stat
+zmodload zsh/datetime
+zmodload zsh/mapfile
+zmodload -i zsh/zutil
+zmodload -i zsh/complist
+
+# omz keybindings
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}"  end-of-line
+bindkey ' ' magic-space
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey "${terminfo[kcbt]}" reverse-menu-complete
+
+# omz fuzzy find history
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
+bindkey -M menuselect '^o' accept-and-infer-next-history
 
-# oh-my-zsh commons
+# omz options
 setopt auto_cd
 setopt auto_menu
 setopt complete_in_word
@@ -19,21 +37,22 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 setopt nobeep
-setopt histignorespace
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-alias -- -='cd -'
-alias 1='cd -'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+
+# omz completion
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 
 # my aliases
 alias la='ls -lAh'
