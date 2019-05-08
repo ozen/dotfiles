@@ -26,7 +26,6 @@ alias c='clear'
 alias reload!='. ~/.zshrc'
 alias backup="rsync -avv --delete --info=name1"
 alias wnvidia="watch -n 1 -d -t nvidia-smi"
-alias devicequery="sudo /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 alias matlabc="matlab -nojvm -nodisplay -nosplash"
@@ -54,7 +53,7 @@ function ndr {
 }
 
 function activate {
-    VENV=${1:-venv}
+    local VENV=${1:-venv}
     source $VENV/bin/activate
 }
 
@@ -169,4 +168,16 @@ function retina {
 
 function switch {
     mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
+}
+
+function ducks {
+    local DIR=${1:-.}
+    local N=${2:-30}
+    du -ah $DIR | sort -n -r | head -n $N
+}
+
+function dducks {
+    local DIR=${1:-.}
+    local N=${2:-30}
+    du -h $DIR | sort -n -r | head -n $N
 }
