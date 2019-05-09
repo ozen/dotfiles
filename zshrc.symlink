@@ -190,3 +190,7 @@ function dducks {
     local N=${2:-30}
     du -h $DIR | sort -n -r | head -n $N
 }
+
+function count {
+    find $1 -type f | wc -l
+}
