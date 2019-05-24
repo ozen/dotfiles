@@ -182,13 +182,13 @@ function switch {
 function ducks {
     local DIR=${1:-.}
     local N=${2:-30}
-    du -ah $DIR | sort -n -r | head -n $N
+    du -a $DIR | sort -n -r | head -n $N
 }
 
 function dducks {
     local DIR=${1:-.}
     local N=${2:-30}
-    du -h $DIR | sort -n -r | head -n $N
+    du $DIR | sort -n -r | head -n $N
 }
 
 function count {
