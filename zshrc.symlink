@@ -19,6 +19,8 @@ zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES_ROOT/nginx.zsh
 
+RPROMPT='$FG[046]%n@%m%{$reset_color%}%'
+
 # apt aliases which are similar to dnf aliases
 alias aptl="apt list"
 alias aptli="apt list --installed"
