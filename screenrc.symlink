@@ -4,6 +4,8 @@ bind ^c screen 1
 bind 0 select 10                                                            
 screen 1
 hardstatus off
-hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+hardstatus string "%{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
 hardstatus alwayslastline
 startup_message off
+bindkey ^[[1;5D prev
+bindkey ^[[1;5C next
