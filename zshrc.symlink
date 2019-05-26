@@ -167,12 +167,12 @@ function ld-path {
 
 function retina {
     if [[ -z "$1" ]] ; then
-        ssh retina.cs.bilkent.edu.tr
+        ssh retina.cs.bilkent.edu.tr -t "screen -d -R yigit-main"
     else
         if [[ $HOSTNAME == "retina" ]] ; then
             ssh retina$1
         else
-            ssh -J retina.cs.bilkent.edu.tr retina$1 
+            ssh -J retina.cs.bilkent.edu.tr retina$1 -t "screen -d -R yigit-main"
         fi 
     fi
 }
