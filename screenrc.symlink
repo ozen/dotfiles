@@ -9,3 +9,4 @@ hardstatus alwayslastline
 startup_message off
 bindkey ^[[1;5D prev
 bindkey ^[[1;5C next
+altscreen on
