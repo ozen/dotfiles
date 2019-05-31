@@ -48,6 +48,12 @@ alias youtube="noglob youtube-dl"
 alias omni="noglob omniboard --mu \$(cat ~/.omniboard)"
 alias tb="tensorboard --logdir"
 
+function matlabr {
+    local command=$@
+    matlab -nojvm -nodisplay -nosplash -nodesktop -r "try, $command; catch, exit(1), end, exit(0);"
+    echo "matlab exit code: $?"
+}
+
 function ndr {
     docker run --runtime=nvidia -it --rm \
     --volume="/home/$USER:/home/$USER" \
