@@ -21,6 +21,9 @@ source $DOTFILES_ROOT/nginx.zsh
 
 RPROMPT='$FG[046]%n@%m%{$reset_color%}%'
 
+setopt menu_complete
+setopt no_beep
+
 # apt aliases which are similar to dnf aliases
 alias aptl="apt list"
 alias aptli="apt list --installed"
@@ -200,5 +203,9 @@ function dducks {
 }
 
 function count {
-    find $1 -type f | wc -l
+    if [[ -z "$2" ]] ; then
+        find $1 -type f | wc -l
+    else
+        find $2 -type f -name $1 | wc -l
+    fi
 }
