@@ -21,7 +21,6 @@ source $DOTFILES_ROOT/nginx.zsh
 
 RPROMPT='$FG[046]%n@%m%{$reset_color%}%'
 
-setopt menu_complete
 setopt no_beep
 
 # apt aliases which are similar to dnf aliases
