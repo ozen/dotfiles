@@ -15,7 +15,7 @@ COMPLETION_WAITING_DOTS=true
 ZSH_DISABLE_COMPFIX=true
 DISABLE_AUTO_UPDATE=true
 
-plugins=(git screen)
+plugins=(git screen pip python zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES_ROOT/nginx.zsh
