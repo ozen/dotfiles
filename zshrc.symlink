@@ -185,7 +185,7 @@ function retina {
     fi
 }
 
-function switch {
+function swap {
     mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
 }
 
