@@ -208,3 +208,11 @@ function count {
         find $2 -type f -name $1 | wc -l
     fi
 }
+
+function dcount {
+    local DIR=${1:-.}
+    local D=${2:-1}
+    for d in $(find ${DIR} -maxdepth ${D} -type d); do 
+        echo ${d} $(count ${d})
+    done
+}
