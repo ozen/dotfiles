@@ -89,7 +89,7 @@ function sok {
 }
 
 function killsok {
-        pkill -f "ssh -D 1080"
+    pkill -f "ssh -D 1080"
 }
 
 function sshl {
@@ -183,6 +183,11 @@ function retina {
             ssh -J retina.cs.bilkent.edu.tr retina$1 -t "screen -d -R yigit-main"
         fi 
     fi
+}
+
+function retina-bridge {
+    pkill -f 'ssh -L 9101'
+    ssh -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L 2222:localhost:22 -J retina.cs.bilkent.edu.tr -A -f -C -q -N retina$1
 }
 
 function swap {
