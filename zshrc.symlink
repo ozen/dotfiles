@@ -19,7 +19,7 @@ zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES_ROOT/nginx.zsh
 
-RPROMPT='$FG[046]%n@%m%{$reset_color%}%'
+RPROMPT='$(virtualenv_prompt_info) $FG[046]%n@%m%{$reset_color%}%'
 
 setopt no_beep
 
