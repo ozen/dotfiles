@@ -174,6 +174,10 @@ function ld-path {
     fi
 }
 
+function sss {
+    ssh $1 -t "screen -d -R yigit-main"
+}
+
 function retina {
     if [[ -z "$1" ]] ; then
         ssh retina.cs.bilkent.edu.tr -t "screen -d -R yigit-main"
