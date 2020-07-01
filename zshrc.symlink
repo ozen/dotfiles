@@ -38,6 +38,7 @@ alias l='ls -lh'
 alias c='clear'
 alias reload!='. ~/.zshrc'
 alias backup="rsync -avv --delete --info=name1"
+alias nas_mv="rsync -rltgoDv"
 alias wnv="watch -n 1 -d -t nvidia-smi"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
