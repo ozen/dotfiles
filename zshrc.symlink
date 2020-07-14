@@ -197,6 +197,19 @@ function retina-bridge {
     ssh -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L 2222:localhost:22 -J retina.cs.bilkent.edu.tr -A -f -C -q -N retina$1
 }
 
+function bridge {
+    local PORT=${2:-2222}
+    pkill -f 'ssh -L 9101'
+    ssh -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -A -f -C -q -N $1
+}
+
+function argos-bridge {
+    local TARGET=${1:-yigit}
+    local PORT=${2:-2222}
+    pkill -f 'ssh -L 9101'
+    ssh -L 3390:localhost:3389 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -J 10.0.90.1 -A -f -C -q -N ${TARGET}
+}
+
 function swap {
     mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
 }
