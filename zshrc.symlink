@@ -207,7 +207,7 @@ function argos-bridge {
     local TARGET=${1:-yigit}
     local PORT=${2:-2222}
     pkill -f 'ssh -L 9101'
-    ssh -L 3390:localhost:3389 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -J 10.0.90.1 -A -f -C -q -N ${TARGET}
+    ssh -L 3390:localhost:3389 -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -J 10.0.90.1 -A -f -C -q -N ${TARGET}
 }
 
 function swap {
