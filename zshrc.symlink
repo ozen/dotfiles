@@ -177,7 +177,7 @@ function ld-path {
 }
 
 function sss {
-    ssh $1 -t "screen -d -R yigit-main"
+    ssh $@ -t "screen -d -R yigit-main"
 }
 
 function retina {
