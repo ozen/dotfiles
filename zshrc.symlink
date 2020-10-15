@@ -43,7 +43,6 @@ alias wnv="watch -n 1 -d -t nvidia-smi"
 alias suz="noglob suz"
 alias sv="sudo supervisorctl"
 alias matlabc="matlab -nojvm -nodisplay -nosplash"
-alias ndr="noglob ndr"
 alias ytail="tail -f -n 1000"
 alias yps="ps axf -o pid,ppid,user,etime,bsdtime,args"
 alias ytop="top -c -d 1"
@@ -58,21 +57,6 @@ function matlabr {
     local command=$@
     matlab -nojvm -nodisplay -nosplash -nodesktop -r "try, $command; catch, exit(1), end, exit(0);"
     echo "matlab exit code: $?"
-}
-
-function ndr {
-    docker run --runtime=nvidia -it --rm \
-    --volume="/home/$USER:/home/$USER" \
-    --volume=/etc/group:/etc/group:ro \
-    --volume=/etc/passwd:/etc/passwd:ro \
-    --volume=/etc/shadow:/etc/shadow:ro \
-    --volume=/etc/sudoers:/etc/sudoers:ro \
-    --volume=/etc/sudoers.d:/etc/sudoers.d:ro \
-    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
-    --user=$(id -u) \
-    --env="DISPLAY" \
-    --workdir="/home/$USER" \
-    $@
 }
 
 function activate {
