@@ -226,3 +226,8 @@ function dcount {
         echo ${d} $(count ${d})
     done
 }
+
+function sundrain {
+    sudo scontrol update NodeName=$1 State=DOWN Reason="undraining"
+    sudo scontrol update NodeName=$1 State=RESUME
+}
