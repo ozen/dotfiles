@@ -73,11 +73,13 @@ function ytopp {
 }
 
 function sok {
-    ssh -D 1080 -A -f -C -q -N $1
+    local PORT=${2:-1080}
+    ssh -D ${PORT} -A -f -C -q -N $1
 }
 
 function killsok {
-    pkill -f "ssh -D 1080"
+    local PORT=${1:-1080}
+    pkill -f "ssh -D ${PORT}"
 }
 
 function sshl {
