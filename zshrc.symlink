@@ -9,12 +9,22 @@ COMPLETION_WAITING_DOTS=true
 ZSH_DISABLE_COMPFIX=true
 DISABLE_AUTO_UPDATE=true
 
-plugins=(systemd dnf git 
-screen tmux supervisor sudo
-pip python virtualenv fabric django
-docker docker-compose docker-machine
-colored-man-pages
-zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+    colored-man-pages
+    django
+    docker
+    docker-compose
+    git
+    pip
+    python
+    screen
+    sudo
+    systemd
+    tmux
+    virtualenv
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES_ROOT/nginx.zsh
@@ -52,6 +62,7 @@ alias omni="noglob omniboard --mu \$(cat ~/.omniboard)"
 alias tb="tensorboard --logdir"
 alias nb2py="jupyter nbconvert --to python"
 alias -g docker-user-opts="-v=/etc/group:/etc/group:ro -v=/etc/passwd:/etc/passwd:ro -v=/etc/shadow:/etc/shadow:ro -v=/etc/sudoers:/etc/sudoers:ro -v=/etc/sudoers.d:/etc/sudoers.d:ro -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -u=\$(id -u) -e='DISPLAY'"
+alias -g ssh-bg="-A -f -C -q -N"
 
 function matlabr {
     local command=$@
