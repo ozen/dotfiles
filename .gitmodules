@@ -13,3 +13,6 @@
 [submodule "vim.symlink/pack/plugins/start/vim-airline"]
 	path = vim.symlink/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "oh-my-zsh-custom/themes/powerlevel10k"]
+	path = oh-my-zsh-custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
