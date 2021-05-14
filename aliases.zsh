@@ -50,6 +50,7 @@ alias ys="screen -d -R yigit-main"
 alias youtube="noglob youtube-dl"
 alias tb="tensorboard --logdir"
 alias nb2py="jupyter nbconvert --to python"
+alias snodeinfo='sinfo --Node -O "NodeList,StateCompact,CPUsState,Memory,AllocMem,Gres,GresUsed"'
 
 # custom global aliases
 alias -g docker-user-opts="-v=/etc/group:/etc/group:ro -v=/etc/passwd:/etc/passwd:ro -v=/etc/shadow:/etc/shadow:ro -v=/etc/sudoers:/etc/sudoers:ro -v=/etc/sudoers.d:/etc/sudoers.d:ro -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -u=\$(id -u) -e='DISPLAY'"
