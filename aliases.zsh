@@ -34,6 +34,8 @@ alias hsi='history | grep -i'
 alias c='clear'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+(( $+commands[fd] )) || alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 alias duf='du -sh'
 alias t='tail -f -n 100'
 alias p="ps axf -o pid,ppid,user,etime,bsdtime,args"
