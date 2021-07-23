@@ -65,6 +65,11 @@ function matlabr {
     echo "matlab exit code: $?"
 }
 
+function nbclear {
+    local DEST=${2:-$1}
+    jupyter nbconvert $1 --to notebook --ClearOutputPreprocessor.enabled=True --output $DEST
+}
+
 function activate {
     local VENV=${1:-venv}
     source $VENV/bin/activate
