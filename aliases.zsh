@@ -132,6 +132,11 @@ function priv2pub {
     ssh-keygen -y -f $1 > $1.pub
 }
 
+function rndpass {
+    local N=${1:-12}
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $N | head -n 1
+}
+
 function randomize {
     for inp in "$@"; do
         if [ -f "$inp" ]; then
