@@ -250,3 +250,6 @@ function sundrain {
     sudo scontrol update NodeName=$1 State=RESUME
 }
 
+function newestof {
+    find $1 -type f -printf "%T@ %p %Tc\n" | sort -n | tail -n 1 | cut -d' ' -f 2-
+}
