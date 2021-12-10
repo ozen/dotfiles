@@ -7,6 +7,6 @@ hardstatus off
 hardstatus string "%{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
 hardstatus alwayslastline
 startup_message off
-bindkey ^[[1;5D prev
-bindkey ^[[1;5C next
+bindkey ^[[1;2D prev
+bindkey ^[[1;2C next
 altscreen on
