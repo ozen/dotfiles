@@ -23,7 +23,7 @@ plugins=(
     screen
     sudo
     systemd
-    tmux
+#    tmux
     virtualenv
     nmap
 #    safe-paste
