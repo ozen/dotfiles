@@ -127,6 +127,12 @@ install_dotfiles () {
     done
 }
 
+install_submodules () {
+    cd $DOTFILES_ROOT
+    git submodule update --init
+}
+
+install_submodules
 setup_gitconfig
 setup_mycnf
 install_dotfiles
