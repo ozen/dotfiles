@@ -23,10 +23,8 @@ plugins=(
     screen
     sudo
     systemd
-#    tmux
     virtualenv
     nmap
-#    safe-paste
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
@@ -37,4 +35,8 @@ source $DOTFILES_ROOT/aliases.zsh
 source $DOTFILES_ROOT/nginx.zsh
 source $DOTFILES_ROOT/p10k.zsh
 
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+source $DOTFILES_ROOT/iterm2_shell_integration.zsh
+
 setopt no_beep
+
