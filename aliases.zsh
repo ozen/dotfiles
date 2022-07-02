@@ -180,24 +180,11 @@ function ld-path {
 }
 
 function sss {
-    ssh $@ -t "screen -d -R yigit-main"
-}
-
-function retina {
-    if [[ -z "$1" ]] ; then
-        ssh retina.cs.bilkent.edu.tr -t "screen -d -R yigit-main"
+    if [[ `uname` == "Darwin" ]]; then
+        ssh $@ -t "tmux -CC new -A -s yigit-main"
     else
-        if [[ $HOSTNAME == "retina" ]] ; then
-            ssh retina$1
-        else
-            ssh -J retina.cs.bilkent.edu.tr retina$1 -t "screen -d -R yigit-main"
-        fi 
+        ssh $@ -t "screen -d -R yigit-main"
     fi
-}
-
-function retina-bridge {
-    pkill -f 'ssh -L 9101'
-    ssh -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L 2222:localhost:22 -J retina.cs.bilkent.edu.tr -A -f -C -q -N retina$1
 }
 
 function bridge {
