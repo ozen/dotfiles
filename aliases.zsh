@@ -47,7 +47,6 @@ alias wnv="watch -n 0.5 -d -t nvidia-smi"
 alias matlabc="matlab -nojvm -nodisplay -nosplash"
 alias top="top -c -d 1"
 alias ys="screen -d -R yigit-main"
-alias youtube="noglob youtube-dl"
 alias tb="tensorboard --logdir"
 alias nb2py="jupyter nbconvert --to python"
 alias snodeinfo='sinfo --Node -O "NodeList,StateCompact,CPUsState,Memory,AllocMem,Gres,GresUsed"'
@@ -185,19 +184,6 @@ function sss {
     else
         ssh $@ -t "screen -d -R yigit-main"
     fi
-}
-
-function bridge {
-    local PORT=${2:-2222}
-    pkill -f 'ssh -L 9101'
-    ssh -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -A -f -C -q -N $1
-}
-
-function argos-bridge {
-    local TARGET=${1:-yigit}
-    local PORT=${2:-2222}
-    pkill -f 'ssh -L 9101'
-    ssh -L 3390:localhost:3389 -L 9101:localhost:9101 -L 9102:localhost:9102 -L 9103:localhost:9103 -L ${PORT}:localhost:22 -J 10.0.90.1 -A -f -C -q -N ${TARGET}
 }
 
 function swap {
