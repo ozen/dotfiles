@@ -15,7 +15,6 @@ DISABLE_AUTO_UPDATE=true
 
 plugins=(
     colored-man-pages
-    django
     docker
     docker-compose
     git

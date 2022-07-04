@@ -43,24 +43,6 @@ setup_gitconfig () {
     fi
 }
 
-setup_mycnf () {
-    if ! [ -f my.cnf.symlink ]
-    then
-        info 'setup .my.cnf'
-
-        user ' - What is your mysql user name?'
-        read -e mysql_user
-
-        user ' - What is your mysql password?'
-        read -e mysql_password
-
-        sed -e "s/USER/$mysql_user/g" -e "s/PASSWORD/$mysql_password/g" my.cnf.symlink.example > my.cnf.symlink
-
-        success '.my.cnf'
-    fi
-
-}
-
 install_dotfiles () {
     info 'installing dotfiles'
 
@@ -134,7 +116,6 @@ install_submodules () {
 
 install_submodules
 setup_gitconfig
-setup_mycnf
 install_dotfiles
 
 echo ''
