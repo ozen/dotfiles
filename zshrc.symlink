@@ -18,12 +18,13 @@ plugins=(
     docker
     docker-compose
     git
+    nmap
     pip
+    poetry
     screen
     sudo
     systemd
     virtualenv
-    nmap
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
