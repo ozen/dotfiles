@@ -38,7 +38,4 @@ source $DOTFILES_ROOT/p10k.zsh
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 source $DOTFILES_ROOT/iterm2_shell_integration.zsh
 
-export PATH="$HOME/.krew/bin:$PATH"
-
 setopt no_beep
-
