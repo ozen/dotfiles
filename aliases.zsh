@@ -38,13 +38,11 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias ff='find . -type f -name'
 alias duf='du -sh'
 alias t='tail -f -n 100'
-alias p="ps axf -o pid,ppid,user,etime,bsdtime,args"
 alias reload!='. ~/.zshrc'
 
 # custom aliases
 alias backup="rsync -avv --delete --info=name1"
 alias wnv="watch -n 0.5 -d -t nvidia-smi"
-alias matlabc="matlab -nojvm -nodisplay -nosplash"
 alias top="top -c -d 1"
 alias ys="screen -d -R yigit-main"
 alias tb="tensorboard --logdir"
@@ -57,12 +55,6 @@ alias -g ssh-bg="-A -f -C -q -N"
 
 # functions
 alias suz="noglob suz"
-
-function matlabr {
-    local command=$@
-    matlab -nojvm -nodisplay -nosplash -nodesktop -r "try, $command; catch, exit(1), end, exit(0);"
-    echo "matlab exit code: $?"
-}
 
 function nbclear {
     local DEST=${2:-$1}
@@ -131,7 +123,7 @@ function priv2pub {
     ssh-keygen -y -f $1 > $1.pub
 }
 
-function rndpass {
+function randpass {
     local N=${1:-12}
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $N | head -n 1
 }
