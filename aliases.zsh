@@ -178,6 +178,14 @@ function sss {
     fi
 }
 
+function sst {
+    if [[ $LC_TERMINAL == "iTerm2" ]]; then
+        ssh $@ -t "tmux -CC new -A -s yigit-main"
+    else
+        ssh $@ -t "tmux new -A -s yigit-main"
+    fi
+}
+
 function swap {
     mv $1.backup $1.backup2; mv $1 $1.backup; mv $1.backup2 $1
 }
