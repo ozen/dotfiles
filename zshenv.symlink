@@ -1,2 +1,2 @@
-export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.krew/bin:$HOME/.local/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.krew/bin:$HOME/.local/bin:$HOME/.istioctl/bin:$PATH"
 export EDITOR='vim'
