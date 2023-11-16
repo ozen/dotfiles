@@ -17,6 +17,7 @@ plugins=(
     colored-man-pages
     docker
     docker-compose
+    kubectl
     git
     nmap
     pip
