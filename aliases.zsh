@@ -129,6 +129,11 @@ function randpass {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $N | head -n 1
 }
 
+function randpass_special {
+    local N=${1:-12}
+    openssl rand -base64 $N
+}
+
 function randomize {
     for inp in "$@"; do
         if [ -f "$inp" ]; then

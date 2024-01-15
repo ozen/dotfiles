@@ -1,2 +1,8 @@
-export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.krew/bin:$HOME/.local/bin:$HOME/.istioctl/bin:$PATH:/snap/bin"
 export EDITOR='vim'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.krew/bin:$HOME/.local/bin:$PATH:$HOME/.istioctl/bin:$PATH:/snap/bin"
+fi
