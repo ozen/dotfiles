@@ -227,3 +227,9 @@ function sundrain {
 function newestof {
     find $1 -type f -printf "%T@ %p %Tc\n" | sort -n | tail -n 1 | cut -d' ' -f 2-
 }
+
+function readenv {
+    set -a
+    source $1
+    set +a
+}
