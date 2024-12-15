@@ -21,10 +21,9 @@ plugins=(
     git
     nmap
     pip
-    poetry
-    screen
     sudo
     systemd
+    terraform
     virtualenv
     zsh-autosuggestions
     zsh-syntax-highlighting
