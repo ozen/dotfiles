@@ -17,48 +17,44 @@ alias aptp="apt show"
 alias -g H="| head"
 alias -g T="| tail"
 alias -g G="| grep"
+alias -g F="| fzf"
 alias -g L="| less"
-alias -g M="| most"
+alias -g B="| bat"
 alias -g LL="2>&1 | less"
-alias -g CA="2>&1 | cat -A"
+alias -g BB="2>&1 | bat"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
-alias -g P="2>&1| pygmentize -l pytb"
+alias -g SSHBG="-A -f -C -q -N"
 
-# history aliases
+# other aliases
+alias reload!='. ~/.zshrc'
 alias h='history'
-alias hs='history | grep'
-alias hsi='history | grep -i'
-
-# common aliases
 alias c='clear'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 (( $+commands[fd] )) || alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+alias ff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias duf='du -sh'
-alias t='tail -f -n 100'
-alias reload!='. ~/.zshrc'
-
-# custom aliases
 alias backup="rsync -avv --delete --info=name1"
 alias wnv="watch -n 0.5 -d -t nvidia-smi"
-alias top="top -c -d 1"
-alias ys="screen -d -R yigit-main"
-alias tb="tensorboard --logdir"
 alias nb2py="jupyter nbconvert --to python"
-alias snodeinfo='sinfo --Node -O "NodeList,StateCompact,CPUsState,Memory,AllocMem,Gres,GresUsed"'
 alias gsha='git rev-parse HEAD | fold -w 7 | head -n 1'
 alias kc='kubectl ctx'
 alias kns='kubectl ns'
 
-# custom global aliases
-alias -g docker-user-opts="-v=/etc/group:/etc/group:ro -v=/etc/passwd:/etc/passwd:ro -v=/etc/shadow:/etc/shadow:ro -v=/etc/sudoers:/etc/sudoers:ro -v=/etc/sudoers.d:/etc/sudoers.d:ro -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -u=\$(id -u) -e='DISPLAY'"
-alias -g ssh-bg="-A -f -C -q -N"
+# bat aliases
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+t() {
+    tail -f -n 100 $1 | bat --paging=never -l log
+}
 
 # functions
-alias suz="noglob suz"
-
 function nbclear {
     local DEST=${2:-$1}
     jupyter nbconvert $1 --to notebook --ClearOutputPreprocessor.enabled=True --output $DEST
@@ -103,6 +99,7 @@ function sshr {
     fi
 }
 
+alias suz="noglob suz"
 function suz {
     sudo -u $1 HOME=$(echo ~$1) ZDOTDIR=$ZDOTDIR PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH zsh
 }
@@ -224,11 +221,6 @@ function dcount {
     for d in $(find ${DIR} -maxdepth ${D} -type d); do 
         echo ${d} $(count ${d})
     done
-}
-
-function sundrain {
-    sudo scontrol update NodeName=$1 State=DOWN Reason="undraining"
-    sudo scontrol update NodeName=$1 State=RESUME
 }
 
 function newestof {
