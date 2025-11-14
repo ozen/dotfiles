@@ -1,8 +1,12 @@
 # ls aliases
-alias l='ls -lh'
-alias la='ls -lAh'
-alias lr='ls -tRh'
-alias lS='ls -1Ssh'
+if (( $+commands[eza] )); then
+    alias ls='eza'
+    alias l='eza -lh'
+    alias la='eza -lAh'
+else
+    alias l='ls -lh'
+    alias la='ls -lAh'    
+fi
 
 # apt aliases which are similar to dnf aliases
 alias aptl="apt list"
@@ -32,7 +36,6 @@ alias h='history'
 alias c='clear'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
-(( $+commands[fd] )) || alias fd='find . -type d -name'
 alias ff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias duf='du -sh'
 alias backup="rsync -avv --delete --info=name1"
