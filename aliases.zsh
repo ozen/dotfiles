@@ -47,17 +47,16 @@ alias kns='kubectl ns'
 
 # bat aliases
 alias bathelp='bat --plain --language=help'
-help() {
+function help {
     "$@" --help 2>&1 | bathelp
 }
-batdiff() {
+function batdiff {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
-t() {
+function t {
     tail -f -n 100 $1 | bat --paging=never -l log
 }
 
-# functions
 function nbclear {
     local DEST=${2:-$1}
     jupyter nbconvert $1 --to notebook --ClearOutputPreprocessor.enabled=True --output $DEST
@@ -66,14 +65,6 @@ function nbclear {
 function activate {
     local VENV=${1:-venv}
     source $VENV/bin/activate
-}
-
-function topp {
-    ytopp_args="-c -d 1"
-    for pid in `pgrep -f $1`; do
-        ytopp_args="$ytopp_args -p $pid"
-    done
-    top $(echo $ytopp_args | xargs)
 }
 
 function sok {
@@ -178,14 +169,6 @@ function ld-path {
     fi
 }
 
-function sss {
-    if [[ `uname` == "Darwin" ]]; then
-        ssh $@ -t "tmux -CC new -A -s yigit-main"
-    else
-        ssh $@ -t "screen -d -R yigit-main"
-    fi
-}
-
 function sst {
     if [[ $LC_TERMINAL == "iTerm2" ]]; then
         ssh $@ -t "tmux -CC new -A -s yigit-main"
@@ -234,4 +217,9 @@ function readenv {
     set -a
     source $1
     set +a
+}
+
+function ai {
+    local cmd=$(gemini -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
+    print -z "$cmd"
 }

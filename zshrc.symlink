@@ -41,3 +41,53 @@ source $DOTFILES_ROOT/iterm2_shell_integration.zsh
 export FZF_COMPLETION_TRIGGER='~~'
 
 setopt no_beep
+
+# Lazy load conda (saves ~0.5s at startup)
+__conda_setup_file="/Users/yigitozen/opt/miniconda3/etc/profile.d/conda.sh"
+__conda_bin="/Users/yigitozen/opt/miniconda3/bin"
+conda() {
+    unfunction conda
+    __conda_setup="$('/Users/yigitozen/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ] && [ -n "$__conda_setup" ]; then
+        eval "$__conda_setup"
+    elif [ -f "$__conda_setup_file" ]; then
+        . "$__conda_setup_file"
+    else
+        export PATH="$__conda_bin:$PATH"
+    fi
+    unset __conda_setup
+    conda "$@"
+}
+
+# Lazy load NVM (saves ~0.5s at startup)
+export NVM_DIR="$HOME/.nvm"
+nvm() {
+    unfunction nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm "$@"
+}
+# Also lazy-load node, npm, npx, yarn if they're not already available
+if ! command -v node >/dev/null 2>&1; then
+    __nvm_lazy_load() {
+        unfunction node npm npx yarn 2>/dev/null
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    }
+    node() {
+        __nvm_lazy_load
+        command node "$@"
+    }
+    npm() {
+        __nvm_lazy_load
+        command npm "$@"
+    }
+    npx() {
+        __nvm_lazy_load
+        command npx "$@"
+    }
+    yarn() {
+        __nvm_lazy_load
+        command yarn "$@"
+    }
+fi
