@@ -220,7 +220,7 @@ function readenv {
 }
 
 function ai {
-    local cmd=$(gemini -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
+    local cmd=$(claude -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
     print -z "$cmd"
 }
 
