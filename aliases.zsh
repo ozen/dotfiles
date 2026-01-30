@@ -223,3 +223,16 @@ function ai {
     local cmd=$(gemini -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
     print -z "$cmd"
 }
+
+function cwt {
+    local name=$1
+    if [[ -z "$name" ]]; then
+        echo "Usage: cwt <branch-name>"
+        return 1
+    fi
+    if git rev-parse --verify "$name" &>/dev/null; then
+        git worktree add ".worktrees/$name" "$name"
+    else
+        git worktree add -b "$name" ".worktrees/$name"
+    fi && (cd ".worktrees/$name" && ([[ -f package.json ]] && pnpm install) && claude)
+}
