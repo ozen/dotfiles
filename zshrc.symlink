@@ -27,11 +27,15 @@ plugins=(
     terraform
     virtualenv
     zsh-autosuggestions
-    zsh-syntax-highlighting
     history-substring-search
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yigitozen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yigitozen/google-cloud-sdk/completion.zsh.inc'; fi
+
 source $DOTFILES_ROOT/aliases.zsh
 source $DOTFILES_ROOT/p10k.zsh
 
