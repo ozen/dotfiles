@@ -219,8 +219,26 @@ function readenv {
     set +a
 }
 
+# function ai {
+#     local cmd=$(claude -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
+#     print -z "$cmd"
+# }
+
 function ai {
-    local cmd=$(claude -p "Output the raw terminal command only, no explanations, no markdown: $*" | sed -e 's/```//g' -e 's/`//g' -e '/^$/d' | xargs)
+    local tmp cmd
+    tmp=$(mktemp) || return 1
+
+    codex exec --ephemeral --skip-git-repo-check --color never \
+        -o "$tmp" \
+        "Output the raw terminal command only, no explanations, no markdown. Do not execute it: $*" \
+        >/dev/null || {
+            rm -f "$tmp"
+            return 1
+        }
+
+    cmd=$(sed -e 's/```//g' -e 's/`//g' -e '/^$/d' "$tmp" | xargs)
+    rm -f "$tmp"
+
     print -z "$cmd"
 }
 
@@ -235,4 +253,22 @@ function cwt {
     else
         git worktree add -b "$name" ".worktrees/$name"
     fi && (cd ".worktrees/$name" && ([[ -f package.json ]] && pnpm install) && claude)
+}
+
+function tfplan() {
+    local plan_file="${1:-tfplan}"
+
+    terraform plan -out="$plan_file" &&
+        terraform show "$plan_file" | bat
+}
+
+function tfshow() {
+    local plan_file="${1:-tfplan}"
+
+    if [[ ! -f "$plan_file" ]]; then
+        print -u2 "Plan file not found: $plan_file"
+        return 1
+    fi
+
+    terraform show "$plan_file" | bat
 }
