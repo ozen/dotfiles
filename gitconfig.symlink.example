@@ -8,7 +8,7 @@
 [credential]
 	helper = cache --timeout=3600
 [push]
-	default = matching
+	default = simple
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -18,3 +18,5 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[rerere]
+	enabled = true
