@@ -9,5 +9,12 @@
 	helper = cache --timeout=3600
 [push]
 	default = matching
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [pull]
-	rebase = false
+	rebase = true
+[rebase]
+	autoStash = true
