@@ -18,7 +18,4 @@ Run the macOS settings script:
 
     .dotfiles/macos
 
-This configures:
-
-- Dock auto-hide animation duration to `0.15` seconds.
-- Mouse acceleration (`com.apple.mouse.scaling`) to `-1`.
+The configurations are explained in the comments of the script.
