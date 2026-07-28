@@ -8,6 +8,9 @@ Personal shell and development environment configuration for macOS and Linux.
 | --- | --- |
 | `Brewfile` | Homebrew bundle containing top-level CLI tools, applications, VS Code extensions, Krew plugins, and npm packages. |
 | `setup` | Initializes Git submodules, creates a personal Git config, and links every `*.symlink` file or directory into the home directory. |
+| `codex/AGENTS.md` | Global Codex instructions linked to `~/.codex/AGENTS.md`. |
+| `codex/config.toml` | Safe, portable Codex defaults used to bootstrap a local user configuration. |
+| `codex/pets/` | Codex v2 pet packages linked into `~/.codex/pets/`. |
 | `zshrc.symlink` | Oh My Zsh and Powerlevel10k setup, plugins, lazy-loaded Conda and NVM, iTerm2 integration, and SSH agent initialization. |
 | `zprofile.symlink` | Platform-specific paths for Homebrew, VS Code, Krew, local binaries, PostgreSQL, and Google Cloud SDK. |
 | `zshenv.symlink` | Default terminal and visual editors. |
@@ -33,6 +36,13 @@ The setup script initializes the submodules and prompts before replacing,
 backing up, or skipping existing dotfiles. If `gitconfig.symlink` does not
 exist, it also asks for the Git author email and generates the file from the
 included example.
+
+Codex instructions and pet assets are symlinked into `~/.codex`. On a new
+machine, `codex/config.toml` is copied to `~/.codex/config.toml` as a regular
+local file with mode `0600`. If a local config already exists, setup leaves it
+untouched and prints a diff against the portable defaults. Project trust,
+private MCP servers, machine paths, runtime state, credentials, history,
+databases, and caches remain local.
 
 To install the macOS packages and tools:
 
