@@ -29,6 +29,121 @@ link_files () {
     success "linked $1 to $2"
 }
 
+link_codex_file () {
+    codex_source=$1
+    codex_dest=$2
+
+    if [ -L "$codex_dest" ] && [ "$codex_source" -ef "$codex_dest" ]
+    then
+        success "$codex_dest is already linked"
+        return
+    fi
+
+    if [ -e "$codex_dest" ] || [ -L "$codex_dest" ]
+    then
+        if [ -f "$codex_dest" ] && cmp -s "$codex_source" "$codex_dest"
+        then
+            rm "$codex_dest"
+        else
+            user "File already exists: $codex_dest, what do you want to do? [s]kip, [o]verwrite, [b]ackup?"
+            read -n 1 action
+            echo ''
+
+            case "$action" in
+                o )
+                    rm -f "$codex_dest";;
+                b )
+                    mv "$codex_dest" "$codex_dest.backup";;
+                * )
+                    success "skipped $codex_dest"
+                    return;;
+            esac
+        fi
+    fi
+
+    link_files "$codex_source" "$codex_dest"
+}
+
+install_codex_config () {
+    codex_config_source=$1
+    codex_config_dest=$2
+
+    if ! [ -f "$codex_config_source" ]
+    then
+        return
+    fi
+
+    if [ -L "$codex_config_dest" ] && [ "$codex_config_source" -ef "$codex_config_dest" ]
+    then
+        codex_config_tmp=`mktemp "$HOME/.codex/config.toml.XXXXXX"`
+        cp "$codex_config_dest" "$codex_config_tmp"
+        rm "$codex_config_dest"
+        mv "$codex_config_tmp" "$codex_config_dest"
+        chmod 600 "$codex_config_dest"
+        success "converted $codex_config_dest to a local file"
+        return
+    fi
+
+    if ! [ -e "$codex_config_dest" ] && ! [ -L "$codex_config_dest" ]
+    then
+        cp "$codex_config_source" "$codex_config_dest"
+        chmod 600 "$codex_config_dest"
+        success "copied $codex_config_source to $codex_config_dest"
+        return
+    fi
+
+    if cmp -s "$codex_config_source" "$codex_config_dest"
+    then
+        success "left existing $codex_config_dest unchanged"
+        return
+    fi
+
+    success "left existing $codex_config_dest unchanged; diff follows"
+    if diff -u "$codex_config_source" "$codex_config_dest"
+    then
+        :
+    fi
+}
+
+install_codex_files () {
+    codex_root="$DOTFILES_ROOT/codex"
+
+    if ! [ -d "$codex_root" ]
+    then
+        return
+    fi
+
+    info 'installing Codex files'
+    mkdir -p "$HOME/.codex/pets"
+
+    if [ -f "$codex_root/AGENTS.md" ]
+    then
+        link_codex_file "$codex_root/AGENTS.md" "$HOME/.codex/AGENTS.md"
+    fi
+
+    install_codex_config "$codex_root/config.toml" "$HOME/.codex/config.toml"
+
+    for pet_source in "$codex_root"/pets/*
+    do
+        if ! [ -d "$pet_source" ]
+        then
+            continue
+        fi
+
+        pet_name=`basename "$pet_source"`
+        pet_dest="$HOME/.codex/pets/$pet_name"
+        mkdir -p "$pet_dest"
+
+        for pet_file in pet.json spritesheet.webp
+        do
+            if [ -f "$pet_source/$pet_file" ]
+            then
+                link_codex_file "$pet_source/$pet_file" "$pet_dest/$pet_file"
+            fi
+        done
+    done
+}
+
 setup_gitconfig () {
     if ! [ -f gitconfig.symlink ]
     then
@@ -117,6 +232,7 @@ install_submodules () {
 install_submodules
 setup_gitconfig
 install_dotfiles
+install_codex_files
 
 echo ''
 echo '  All installed!'
