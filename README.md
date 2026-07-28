@@ -8,6 +8,7 @@ Personal shell and development environment configuration for macOS and Linux.
 | --- | --- |
 | `Brewfile` | Homebrew bundle containing top-level CLI tools, applications, VS Code extensions, Krew plugins, and npm packages. |
 | `setup` | Initializes Git submodules, creates a personal Git config, and links every `*.symlink` file or directory into the home directory. |
+| `vscode/settings.json` | Curated backup of portable VS Code user settings for manual recovery. |
 | `codex/AGENTS.md` | Global Codex instructions linked to `~/.codex/AGENTS.md`. |
 | `codex/config.toml` | Safe, portable Codex defaults used to bootstrap a local user configuration. |
 | `codex/pets/` | Codex v2 pet packages linked into `~/.codex/pets/`. |
@@ -71,3 +72,24 @@ Run the macOS settings script:
 ```
 
 The configurations are explained in the comments of the script.
+
+## VS Code settings recovery
+
+The repository contains a curated backup of the user settings at
+`vscode/settings.json`. It intentionally omits machine-specific paths,
+temporary extension state, and project identifiers. The `setup` script does
+not install or link this file.
+
+If Settings Sync is unavailable or its cloud copy is lost, quit VS Code and
+restore the settings manually on macOS:
+
+```sh
+mkdir -p "$HOME/Library/Application Support/Code/User"
+cp "$HOME/.dotfiles/vscode/settings.json" \
+    "$HOME/Library/Application Support/Code/User/settings.json"
+```
+
+The copy command replaces any existing user settings. Back up that file first
+if it contains changes you want to keep. Restart VS Code after copying. The
+referenced themes, formatters, and other extension-provided settings take
+effect after their corresponding extensions are installed.
