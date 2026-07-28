@@ -1,0 +1,55 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+personality = "pragmatic"
+
+mcp_oauth_callback_port = 8765
+
+service_tier = "default"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[desktop]
+sansFontSize = 15
+codeFontSize = 14
+mac-menu-bar-enabled = false
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+notifications-turn-mode = "always"
+followUpQueueMode = "queue"
+reviewDelivery = "inline"
+dock-icon-preference = "app-default"
+conversationDetailMode = "STEPS_COMMANDS"
+selected-avatar-id = "custom:kivilcim"
+git-branch-prefix = ""
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[features]
+js_repl = false
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
