@@ -61,3 +61,13 @@ chsh -s "$(command -v zsh)"
 Files and directories ending in `.symlink` are linked into the home directory
 with that suffix removed. For example, `zshrc.symlink` becomes `~/.zshrc` and
 `vim.symlink/` becomes `~/.vim/`.
+
+## macOS settings
+
+Run the macOS settings script:
+
+```sh
+.dotfiles/macos
+```
+
+The configurations are explained in the comments of the script.
