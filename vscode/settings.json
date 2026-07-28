@@ -1,0 +1,186 @@
+{
+    "telemetry.telemetryLevel": "off",
+    "remote.SSH.remoteServerListenOnSocket": true,
+    "git.autofetch": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "jupyter.askForKernelRestart": false,
+    "window.restoreWindows": "none",
+    "window.openFoldersInNewWindow": "on",
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
+    "redhat.telemetry.enabled": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.showStartPage": false,
+    "gitlens.codeLens.enabled": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:command",
+        "branch-create:command"
+    ],
+    "liveshare.presence": true,
+    "terminal.integrated.scrollback": 10000,
+    "remote.otherPortsAttributes": {
+        "onAutoForward": "silent"
+    },
+    "git.allowForcePush": true,
+    "editor.mouseWheelZoom": true,
+    "window.restoreFullscreen": true,
+    "git.ignoreMissingGitWarning": true,
+    "editor.stickyScroll.enabled": true,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "aws.telemetry": false,
+    "aws.resources.enabledResources": [],
+    "aws.suppressPrompts": {
+        "regionAddAutomatically": true
+    },
+    "[proto3]": {
+        "editor.tabSize": 2
+    },
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled",
+        "vs-kubernetes.ignore-recommendations": true
+    },
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.lightIndicatorStyleLineWidth": 6,
+    "window.newWindowDimensions": "maximized",
+    "sql-formatter.uppercase": true,
+    "editor.inlineSuggest.enabled": true,
+    "terminal.integrated.shellIntegration.suggestEnabled": true,
+    "terminal.integrated.shellIntegration.history": 1000,
+    "editor.accessibilitySupport": "off",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.tree.indent": 10,
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.editor.empty.hint": "hidden",
+    "inlineChat.showGutterIcon": true,
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.colorTheme": "Tokyo Night",
+    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+    "terminal.integrated.inheritEnv": false,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.fontSize": 15,
+    "terminal.integrated.fontSize": 15,
+    "cSpell.enableFiletypes": [
+        "!plaintext",
+        "!yaml"
+    ],
+    "cloudcode.autoDependencies": "off",
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
+    "[yaml]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "cSpell.enabledFileTypes": {
+        "plaintext": false
+    },
+    "githubPullRequests.pullBranch": "never",
+    "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "chat.editor.fontSize": 14,
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": true,
+        ".claude/rules": true,
+        "~/.copilot/instructions": true,
+        "~/.claude/rules": true
+    },
+    "workbench.colorCustomizations": {
+        "[Tokyo Night]": {
+            "foreground": "#959cbd",
+            "panelTitle.activeBorder": "#3d59a1",
+            "panelTitle.activeForeground": "#bdc7f0",
+            "tab.activeForeground": "#bdc7f0",
+            "breadcrumb.foreground": "#959cbd",
+            "breadcrumb.focusForeground": "#bdc7f0",
+            "breadcrumb.activeSelectionForeground": "#bdc7f0",
+            "list.activeSelectionForeground": "#bdc7f0"
+        }
+    },
+    "diffEditor.renderSideBySide": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "chat.viewSessions.orientation": "stacked",
+    "yaml.disableSchemaDetection": [
+        "**/.github/workflows/*.yml",
+        "**/.github/workflows/*.yaml",
+        "**/.gitea/workflows/*.yml",
+        "**/.gitea/workflows/*.yaml",
+        "**/.forgejo/workflows/*.yml",
+        "**/.forgejo/workflows/*.yaml"
+    ],
+    "githubPullRequests.createOnPublishBranch": "never",
+    "git.blame.editorDecoration.enabled": false,
+    "git.blame.statusBarItem.enabled": true,
+    "git.detectWorktrees": true,
+    "scm.defaultViewMode": "tree",
+    "workbench.secondarySideBar.defaultVisibility": "hidden"
+}
