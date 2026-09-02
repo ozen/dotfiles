@@ -1,0 +1,7 @@
+interface:
+  display_name: "YO Mode"
+  short_description: "Work in the user's preferred engineering style"
+  default_prompt: "Use $yo-mode to work in my preferred engineering style."
+
+policy:
+  allow_implicit_invocation: false

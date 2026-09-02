@@ -29,6 +29,54 @@ link_files () {
     success "linked $1 to $2"
 }
 
+link_directory () {
+    directory_source=$1
+    directory_dest=$2
+
+    if [ -L "$directory_dest" ] && [ "$directory_source" -ef "$directory_dest" ]
+    then
+        success "$directory_dest is already linked"
+        return
+    fi
+
+    if [ -e "$directory_dest" ] || [ -L "$directory_dest" ]
+    then
+        user "Directory already exists: $directory_dest, what do you want to do? [s]kip, [o]verwrite, [b]ackup?"
+        read -n 1 action
+        echo ''
+
+        case "$action" in
+            o )
+                if [ -d "$directory_dest" ] && ! [ -L "$directory_dest" ]
+                then
+                    rm -rf "$directory_dest"
+                else
+                    rm -f "$directory_dest"
+                fi;;
+            b )
+                mv "$directory_dest" "$directory_dest.backup";;
+            * )
+                success "skipped $directory_dest"
+                return;;
+        esac
+    fi
+
+    link_files "$directory_source" "$directory_dest"
+}
+
+install_agent_skills () {
+    skills_source="$DOTFILES_ROOT/agents/skills"
+
+    if ! [ -d "$skills_source" ]
+    then
+        return
+    fi
+
+    info 'installing agent skills'
+    mkdir -p "$HOME/.agents"
+    link_directory "$skills_source" "$HOME/.agents/skills"
+}
+
 link_codex_file () {
     codex_source=$1
     codex_dest=$2
@@ -232,6 +280,7 @@ install_submodules () {
 install_submodules
 setup_gitconfig
 install_dotfiles
+install_agent_skills
 install_codex_files
 
 echo ''
