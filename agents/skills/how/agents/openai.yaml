@@ -1,2 +1,7 @@
+interface:
+  display_name: "How"
+  short_description: "Explain code architecture and runtime flow"
+  default_prompt: "Use $how to explain how this code works and where its responsibilities live."
+
 policy:
   allow_implicit_invocation: false

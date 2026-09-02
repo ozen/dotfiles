@@ -1,2 +1,7 @@
+interface:
+  display_name: "Subtract Before You Add"
+  short_description: "Remove dead weight before adding new structure"
+  default_prompt: "Use $principle-subtract-before-you-add to remove dead weight before adding new structure."
+
 policy:
   allow_implicit_invocation: false

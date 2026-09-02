@@ -1,2 +1,7 @@
+interface:
+  display_name: "Blast Radius"
+  short_description: "Find and verify a change's wider blast radius"
+  default_prompt: "Use $blast-radius to find and verify what this change could break elsewhere."
+
 policy:
   allow_implicit_invocation: false

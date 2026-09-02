@@ -1,2 +1,7 @@
+interface:
+  display_name: "Model the Domain"
+  short_description: "Model stateful domains with explicit structures"
+  default_prompt: "Use $principle-model-the-domain to replace scattered state logic with an explicit domain structure."
+
 policy:
   allow_implicit_invocation: false

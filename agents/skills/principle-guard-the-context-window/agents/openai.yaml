@@ -1,2 +1,7 @@
+interface:
+  display_name: "Guard the Context Window"
+  short_description: "Protect context by routing bulk work elsewhere"
+  default_prompt: "Use $principle-guard-the-context-window to keep bulk work out of the main context."
+
 policy:
   allow_implicit_invocation: false

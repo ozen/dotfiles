@@ -1,2 +1,7 @@
+interface:
+  display_name: "Swarm"
+  short_description: "Fan out parallel workers and combine results"
+  default_prompt: "Use $swarm to fan this work out across parallel workers and combine their results."
+
 policy:
   allow_implicit_invocation: false

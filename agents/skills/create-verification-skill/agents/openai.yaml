@@ -1,2 +1,7 @@
+interface:
+  display_name: "Create Verification Skill"
+  short_description: "Create project-specific verification skills"
+  default_prompt: "Use $create-verification-skill to create a verification skill for this project."
+
 policy:
   allow_implicit_invocation: false

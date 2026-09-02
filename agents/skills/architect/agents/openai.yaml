@@ -1,2 +1,7 @@
+interface:
+  display_name: "Architect"
+  short_description: "Plan types and module structure before code"
+  default_prompt: "Use $architect to design types and module structure before implementation."
+
 policy:
   allow_implicit_invocation: false

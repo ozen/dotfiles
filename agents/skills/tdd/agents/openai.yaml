@@ -1,2 +1,7 @@
+interface:
+  display_name: "TDD"
+  short_description: "Develop with targeted tests when TDD fits"
+  default_prompt: "Use $tdd to drive this change with a focused failing test."
+
 policy:
   allow_implicit_invocation: false

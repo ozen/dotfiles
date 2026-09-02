@@ -1,2 +1,7 @@
+interface:
+  display_name: "Boundary Discipline"
+  short_description: "Place validation and errors at system boundaries"
+  default_prompt: "Use $principle-boundary-discipline to concentrate validation and error handling at system boundaries."
+
 policy:
   allow_implicit_invocation: false

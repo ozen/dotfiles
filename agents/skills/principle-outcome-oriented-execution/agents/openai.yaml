@@ -1,2 +1,7 @@
+interface:
+  display_name: "Outcome-Oriented Execution"
+  short_description: "Execute migrations toward the target architecture"
+  default_prompt: "Use $principle-outcome-oriented-execution to drive this migration directly toward its target architecture."
+
 policy:
   allow_implicit_invocation: false

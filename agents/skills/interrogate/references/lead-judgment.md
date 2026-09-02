@@ -44,7 +44,7 @@ These are honest mistakes from reviewers working with limited information. Dismi
 
 Don't dismiss findings just because they're uncomfortable. The whole point of adversarial review is to catch things you'd miss. Signs a finding deserves attention:
 
-- Multiple reviewers flag the same issue independently (consensus signal)
+- Multiple reviewers reach the same issue through different primary lenses. Treat this as corroboration, not proof.
 - The finding identifies a concrete execution path, not a hypothetical
 - The finding reveals a gap in your mental model of the code
 - You read the finding and think "...yeah, actually"

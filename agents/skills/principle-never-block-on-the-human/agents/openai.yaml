@@ -1,2 +1,7 @@
+interface:
+  display_name: "Never Block on the Human"
+  short_description: "Proceed autonomously on safe, reversible work"
+  default_prompt: "Use $principle-never-block-on-the-human to proceed autonomously with safe, reversible work."
+
 policy:
   allow_implicit_invocation: false

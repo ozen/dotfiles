@@ -1,2 +1,7 @@
+interface:
+  display_name: "Reflect"
+  short_description: "Turn transcript learnings into concrete skill edits"
+  default_prompt: "Use $reflect to review this transcript and turn its learnings into concrete skill edits."
+
 policy:
   allow_implicit_invocation: false

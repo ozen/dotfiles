@@ -1,2 +1,7 @@
+interface:
+  display_name: "Redesign from First Principles"
+  short_description: "Integrate requirements from first principles"
+  default_prompt: "Use $principle-redesign-from-first-principles to integrate this requirement as a foundational assumption."
+
 policy:
   allow_implicit_invocation: false

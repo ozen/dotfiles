@@ -1,2 +1,7 @@
+interface:
+  display_name: "Technical Writing"
+  short_description: "Write clear, structured technical documentation"
+  default_prompt: "Use $technical-writing to write or revise this technical documentation."
+
 policy:
   allow_implicit_invocation: false

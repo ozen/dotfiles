@@ -1,2 +1,7 @@
+interface:
+  display_name: "Foundational Thinking"
+  short_description: "Shape core types and structures before logic"
+  default_prompt: "Use $principle-foundational-thinking to shape the core types and data structures before writing logic."
+
 policy:
   allow_implicit_invocation: false

@@ -1,2 +1,7 @@
+interface:
+  display_name: "Minimize Reader Load"
+  short_description: "Reduce layers, hidden state, and reader effort"
+  default_prompt: "Use $principle-minimize-reader-load to reduce the layers and hidden state a reader must track."
+
 policy:
   allow_implicit_invocation: false

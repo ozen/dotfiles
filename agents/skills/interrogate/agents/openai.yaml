@@ -1,2 +1,7 @@
+interface:
+  display_name: "Interrogate"
+  short_description: "Challenge changes with parallel adversarial review"
+  default_prompt: "Use $interrogate to challenge this change with independent adversarial reviews."
+
 policy:
   allow_implicit_invocation: false

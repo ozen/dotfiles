@@ -1,2 +1,7 @@
+interface:
+  display_name: "Maintain Verification Skill"
+  short_description: "Audit and repair project verification skills"
+  default_prompt: "Use $maintain-verification-skill to audit and repair this project's verification skill."
+
 policy:
   allow_implicit_invocation: false

@@ -1,2 +1,7 @@
+interface:
+  display_name: "Why"
+  short_description: "Recover evidence-backed design rationale"
+  default_prompt: "Use $why to recover the evidence-backed rationale behind this decision."
+
 policy:
   allow_implicit_invocation: false

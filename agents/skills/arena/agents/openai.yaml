@@ -1,2 +1,7 @@
+interface:
+  display_name: "Arena"
+  short_description: "Compare parallel candidates and combine the best"
+  default_prompt: "Use $arena to compare parallel candidates and combine their strongest parts."
+
 policy:
   allow_implicit_invocation: false

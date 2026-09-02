@@ -1,2 +1,7 @@
+interface:
+  display_name: "Type System Discipline"
+  short_description: "Design types that make illegal states unrepresentable"
+  default_prompt: "Use $principle-type-system-discipline to design types that make illegal states unrepresentable."
+
 policy:
   allow_implicit_invocation: false

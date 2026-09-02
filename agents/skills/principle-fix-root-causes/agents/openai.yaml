@@ -1,2 +1,7 @@
+interface:
+  display_name: "Fix Root Causes"
+  short_description: "Trace bugs to root causes and fix them"
+  default_prompt: "Use $principle-fix-root-causes to reproduce this bug, trace its root cause, and fix it there."
+
 policy:
   allow_implicit_invocation: false

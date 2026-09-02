@@ -1,2 +1,7 @@
+interface:
+  display_name: "Teach"
+  short_description: "Explain work through architecture and rationale"
+  default_prompt: "Use $teach to explain this work through both its architecture and rationale."
+
 policy:
   allow_implicit_invocation: false

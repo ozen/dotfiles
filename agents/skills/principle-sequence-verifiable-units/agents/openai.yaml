@@ -1,2 +1,7 @@
+interface:
+  display_name: "Sequence Verifiable Units"
+  short_description: "Sequence complex work into verifiable units"
+  default_prompt: "Use $principle-sequence-verifiable-units to break this work into ordered, verifiable units."
+
 policy:
   allow_implicit_invocation: false

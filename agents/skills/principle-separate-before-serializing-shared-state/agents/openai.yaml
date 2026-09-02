@@ -1,2 +1,7 @@
+interface:
+  display_name: "Separate Before Serializing Shared State"
+  short_description: "Eliminate shared state before serializing access"
+  default_prompt: "Use $principle-separate-before-serializing-shared-state to eliminate shared state before adding serialization."
+
 policy:
   allow_implicit_invocation: false

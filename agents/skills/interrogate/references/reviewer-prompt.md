@@ -26,6 +26,12 @@ You are reviewing whether the code achieves this intent well. Do NOT question th
 
 {CODE_QUALITY_CONTENTS}
 
+## Primary Lens
+
+{PRIMARY_LENS}
+
+Use this lens to decide where to spend most of your attention. Apply the full shared rubric, and report strong findings outside the primary lens when you encounter them.
+
 ## Instructions
 
 Review the code through every lens in the rubric and the code-quality lens above that you find relevant. Do not force lenses that don't apply. A simple bug fix does not need paragraphs about architectural integrity.

@@ -1,2 +1,7 @@
+interface:
+  display_name: "Migrate Callers, Then Delete Legacy APIs"
+  short_description: "Migrate callers before deleting legacy APIs"
+  default_prompt: "Use $principle-migrate-callers-then-delete-legacy-apis to migrate callers and remove the legacy API in one wave."
+
 policy:
   allow_implicit_invocation: false

@@ -1,12 +1,12 @@
 ---
 name: interrogate
-description: "Use for \"interrogate\", \"adversarial review\", \"parallel review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple independent reviewers challenge changes from fresh contexts."
+description: "Use for \"interrogate\", \"adversarial review\", \"parallel review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Three reviewers challenge code changes from fresh contexts and distinct primary lenses."
 disable-model-invocation: true
 ---
 
 # Interrogate
 
-Spawn four independent reviewers to adversarially review code changes. Every reviewer inherits the main agent's model, receives the same prompt and rubric, and works from a fresh context. Agreement across independent reviewers is high-confidence signal; findings raised by only one reviewer are worth reading but lower confidence.
+Spawn three reviewers to adversarially review code changes. Every reviewer inherits the main agent's model, receives the same core prompt and rubric, and works from a fresh context. Each reviewer has a different primary lens. Treat agreement as corroboration, not proof. Judge findings by their evidence first and reviewer agreement second.
 
 The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
@@ -33,15 +33,24 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn Reviewers
 
-Launch Reviewer A, Reviewer B, Reviewer C, and Reviewer D concurrently through the available agent launcher. If the user specifies a reviewer count, extend or shrink the labels to match. Omit any model override so every reviewer inherits the main agent's model. Give each read-only instructions and deny writes when the launcher supports permission scoping. If delegation or concurrency is unavailable, run the same reviewer briefs serially in fresh contexts and keep their findings separate; do not reduce the requested count.
+Launch Reviewer A, Reviewer B, and Reviewer C concurrently through the available agent launcher. Always use exactly three reviewers. Omit any model override so every reviewer inherits the main agent's model. Give each read-only instructions and deny writes when the launcher supports permission scoping. If delegation or concurrency is unavailable, run the three reviewer briefs serially in fresh contexts and keep their findings separate.
+
+Assign these primary lenses:
+
+- **Reviewer A: correctness and safety.** Trace execution paths, edge cases, error handling, state, concurrency, security, and failure recovery.
+- **Reviewer B: design and maintainability.** Examine architecture, abstraction boundaries, coupling, data-model fit, complexity, and opportunities to delete incidental complexity.
+- **Reviewer C: verification and integration.** Examine tests, invariants, integration boundaries, observability, idempotency, and whether the change proves the intended behavior under realistic failures.
+
+The primary lens sets emphasis, not a hard boundary. Every reviewer may report a strong finding outside their assigned lens.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 1. The stated intent
 2. The diff or file contents
 3. The review rubric from `references/rubric.md`
 4. The code-quality lens from `references/code-quality-review.md`
+5. The reviewer's assigned primary lens
 
-The same filled template goes to all reviewers, so every reviewer applies the code-quality lens independently.
+The reviewers share the core template and rubric, but each prompt contains its assigned primary lens.
 
 Each reviewer produces structured findings as described in the prompt template.
 
@@ -50,10 +59,11 @@ Each reviewer produces structured findings as described in the prompt template.
 As results come back, build a unified picture:
 
 1. **Parse all findings** from the reviewers
-2. **Identify consensus**. Findings raised by 2+ reviewers independently are highest signal.
-3. **Identify single-reviewer findings**. Still worth reading, but weight accordingly.
-4. **Deduplicate**. Different reviewers may describe the same issue differently. Merge these and note which reviewers raised it.
-5. **Note disagreements**. If one reviewer flags something and another explicitly says the opposite, that's useful context for the verdict.
+2. **Assess evidence**. Concrete execution paths, reachable failures, and verified code relationships matter more than vote count.
+3. **Identify agreement**. Findings raised through multiple lenses gain corroboration, but agreement does not make a weak finding correct.
+4. **Identify single-reviewer findings**. A well-supported finding can be important even when only one lens exposes it.
+5. **Deduplicate**. Different reviewers may describe the same issue differently. Merge these and note which reviewers raised it.
+6. **Note disagreements**. If one reviewer flags something and another explicitly says the opposite, that's useful context for the verdict.
 
 ## Step 5, Lead Judgment
 

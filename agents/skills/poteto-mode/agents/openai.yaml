@@ -1,2 +1,7 @@
+interface:
+  display_name: "Poteto Mode"
+  short_description: "Work in Poteto's preferred engineering style"
+  default_prompt: "Use $poteto-mode to work in Poteto's preferred engineering style."
+
 policy:
   allow_implicit_invocation: false
