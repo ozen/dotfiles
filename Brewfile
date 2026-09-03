@@ -1,5 +1,6 @@
 tap "derailed/k9s"
 tap "derailed/popeye"
+tap "fwdcloudsec/granted"
 tap "hashicorp/tap"
 tap "peonping/tap", "https://github.com/PeonPing/homebrew-tap"
 # CLI tool to build, test, debug, and deploy Serverless applications using AWS SAM
@@ -48,6 +49,8 @@ brew "ghorg"
 brew "ghostscript"
 # Compute various size metrics for a Git repository
 brew "git-sizer"
+# Easiest way to access your cloud
+brew "fwdcloudsec/granted/granted"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.12"
 # Graph visualization software from AT&T and Bell Labs
