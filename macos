@@ -13,6 +13,9 @@ defaults write com.apple.dock autohide-time-modifier -float 0.15
 # Disable mouse acceleration.
 defaults write NSGlobalDomain com.apple.mouse.scaling -float -1
 
+# Set trackpad acceleration.
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.0
+
 # Expand save dialogs and save new documents locally by default.
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
