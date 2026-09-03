@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $unslop to remove AI writing tells and empty phrasing from this text."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false
