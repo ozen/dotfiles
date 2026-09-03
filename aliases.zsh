@@ -31,6 +31,7 @@ alias -g NUL="> /dev/null 2>&1"
 alias -g SSHBG="-A -f -C -q -N"
 
 # other aliases
+alias assume='source "$(brew --prefix)/bin/assume"'
 alias reload!='. ~/.zshrc'
 alias h='history'
 alias c='clear'
