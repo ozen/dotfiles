@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate PR Comments"
+  short_description: "Evaluate PR feedback, fix clear issues, flag decisions"
+  default_prompt: "Use $pr-comments to evaluate this PR's comments, fix and push obvious validated solutions, reply to those comments, and bring uncertain items to me with options."
