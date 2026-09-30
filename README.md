@@ -8,7 +8,7 @@ Personal shell and development environment configuration for macOS and Linux.
 | --- | --- |
 | `Brewfile` | Homebrew bundle containing top-level CLI tools, applications, VS Code extensions, Krew plugins, and npm packages. |
 | `setup` | Initializes Git submodules, creates a personal Git config, and links every `*.symlink` file or directory into the home directory. |
-| `agents/skills/` | Shared agent skills linked to `~/.agents/skills/`. |
+| `agents/skills/` | Shared agent skills linked to `~/.agents/skills/` and `~/.claude/skills/`. |
 | `vscode/settings.json` | Curated backup of portable VS Code user settings for manual recovery. |
 | `codex/AGENTS.md` | Global Codex instructions linked to `~/.codex/AGENTS.md`. |
 | `codex/config.toml` | Safe, portable Codex defaults used to bootstrap a local user configuration. |
@@ -39,7 +39,8 @@ backing up, or skipping existing dotfiles. If `gitconfig.symlink` does not
 exist, it also asks for the Git author email and generates the file from the
 included example.
 
-Agent skills are symlinked from `agents/skills/` to `~/.agents/skills/`. Codex
+Agent skills are symlinked from `agents/skills/` to `~/.agents/skills/` and
+`~/.claude/skills/`. Codex
 instructions and pet assets are symlinked into `~/.codex`. On a new machine,
 `codex/config.toml` is copied to `~/.codex/config.toml` as a regular local file
 with mode `0600`. If a local config already exists, setup leaves it untouched
