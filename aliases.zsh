@@ -125,8 +125,9 @@ function randpass_alpha {
 }
 
 function randpass {
-    local N=${1:-12}
-    openssl rand -base64 $N
+    local N=${1:-16}
+    openssl rand -base64 "$N" | tr -d '\n' | cut -c "1-$N"
+    printf '\n'
 }
 
 function randomize {
