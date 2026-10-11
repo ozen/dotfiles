@@ -5,7 +5,7 @@ if (( $+commands[eza] )); then
     alias la='eza -lAh'
 else
     alias l='ls -lh'
-    alias la='ls -lAh'    
+    alias la='ls -lAh'
 fi
 
 # apt aliases which are similar to dnf aliases
@@ -118,12 +118,13 @@ function priv2pub {
     ssh-keygen -y -f $1 > $1.pub
 }
 
-function randpass {
-    local N=${1:-12}
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $N | head -n 1
+function randpass_alpha {
+    local N=${1:-16}
+    LC_ALL=C tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c "$N"
+    printf '\n'
 }
 
-function randpass_special {
+function randpass {
     local N=${1:-12}
     openssl rand -base64 $N
 }
@@ -205,7 +206,7 @@ function count {
 function dcount {
     local DIR=${1:-.}
     local D=${2:-1}
-    for d in $(find ${DIR} -maxdepth ${D} -type d); do 
+    for d in $(find ${DIR} -maxdepth ${D} -type d); do
         echo ${d} $(count ${d})
     done
 }
